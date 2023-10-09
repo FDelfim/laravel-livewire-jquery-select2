@@ -11,13 +11,23 @@
 
 @push('script')
     <script>
-        $('.select2').select2({
-            placeholder: 'Select a country',
-            allowClear: true
-        }).on('select2:select', function (e) {
-            var data = e.params.data;
-            var model = $(this).data('wire:model');
-            @this.set(model, data.id);
+        document.addEventListener('livewire:load', function(){
+            updateScript();
         })
+        
+        document.addEventListener('livewire:update', function(){
+            updateScript();
+        })
+
+        const updateScript = () => {
+            $('.select2').select2({
+                placeholder: 'Select a country',
+                allowClear: true
+            }).on('select2:select', function (e) {
+                var data = e.params.data;
+                var model = $(this).data('wire:model');
+                @this.set(model, data.id);
+            })
+        }
     </script>
 @endsection
