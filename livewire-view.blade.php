@@ -25,7 +25,7 @@
                 allowClear: true
             }).on('select2:select', function (e) {
                 var data = e.params.data;
-                var model = $(this).data('wire:model');
+                var model = $(this).attr('wire:model');
                 @this.set(model, data.id);
             })
         }
